@@ -10,7 +10,7 @@ def Classes():
         'Main':['main'],
         'Class':['class'],
         'New':['naya'],
-        'Passive':['abstract'],
+        'Abstract':['passive'],
         'Not':['!'],
         'Or':['ya'],
         'And':['aur'],
@@ -21,9 +21,10 @@ def Classes():
         "CompOpr":["+=","-=","*=","/=","%="], #Comparision operator class
         "AssignmentOpr":['='],#Assignment operator class,
         "TerminatorOpr":[';'],#Comparision operator
+        "Punc":['']
         "DataType":["int","float","bool","string","char"],# Data types,
         "Keyword":["main","class","return","function"],# Keywords
-        "AM":["ijtemai","infiradi","protected","andruni"], #Access Modifiers
-        "VO":['arzi','badlo'] #Virtual Override
+        "AccMod":["ijtemai","infiradi","protected","andruni"], #Access Modifiers
+        "VirOver":['arzi','badlo'] #Virtual Override
     }
     return Classes
