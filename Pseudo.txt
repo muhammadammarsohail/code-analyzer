@@ -2,6 +2,27 @@
 alone includes '?' , ';' , ':' , '(' , ')' , ',' , '{' , '}' , '[' , ']'
 breakers includes alone , ' ' , '\n' , '*' , '%' , '<' , '>' , '!' ,
 
-if(cc == )
-if(cc == )
+if(cc == alphabet)
+    if(temp[last] == !alphabet , !number)
+        bagofwords <- temp
+        temp = null
+
+    temp <- cc
+
+
+if(cc == ')
+    bagofwords <- temp
+    temp = null
+    int count = 0
+    bool backslash = false
+    while(count <= 2)
+        if(count == 1 and cc == \ and backslash == false)
+            count--
+            backslash = true
+
+        temp <- cc
+        count++
+        cc++
+
+    bagofwords <- temp
 
