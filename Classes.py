@@ -14,8 +14,7 @@ def Classes():
         "BrkCont": ['roko', 'jari'],  # Break Continue
         "DataType": ["int", "float", "bool", "string", "char"],  # Data types,
         "Keyword": ["main", "class", "return", "function"],  # Keywords
-        # Access Modifiers
-        "AccMod": ["ijtemai", "infiradi", "protected", "andruni"],
+        "AccMod": ["ijtemai", "infiradi", "protected", "andruni"],  # Access Modifiers
         "VirOver": ['arzi', 'badlo']  # Virtual Override
     }
 
@@ -23,11 +22,18 @@ def Classes():
         'Not': ['!'],
         "PM": ['+', '-'],  # Plus Minus class
         "MDM": ['*', '/', '%'],  # Binary operator class
-        # Comparision operator class
-        "CompOpr": ["+=", "-=", "*=", "/=", "%="],
+        "CompOpr": ["+=", "-=", "*=", "/=", "%="],         # Comparision operator class
         "AssignmentOpr": ['='],  # Assignment operator class,
         "TerminatorOpr": [';'],  # Comparision operator
-        "Punc": [''],
+        "OpenBr":['{'],
+        "ClosBr":['{'],
+        "OpenPa":['{'],
+        "ClosPa":['{'],
+        "OpenBr":['{'],
+        "OpenBr":['{'],
+        "OpenBr":['{'],
+        "OpenBr":['{'],
+        "OpenBr":['{'],
         'Equal': ['=']
     }
 
