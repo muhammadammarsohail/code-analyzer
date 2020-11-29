@@ -25,3 +25,20 @@ if(cc == ')
 
     bagofwords <- temp
 
+    if (cc == '.')
+    {
+        if(cc+1 == [0-9])
+            if(temp == [0-9])
+                {
+                    temp.append = cc
+                    cc++
+                }
+
+            else
+            {
+                word.append = temp
+                temp = null
+                temp.append=cc
+            }
+    }
+
