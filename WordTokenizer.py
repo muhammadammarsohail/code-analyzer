@@ -14,12 +14,12 @@ def FilterStartingSpaces(charList=[]):
 def WordTokernizer(charList):
     filteredList = FilterStartingSpaces(charList)
     BagOfWords = []
-    # wordBreaker = ['+', '-', '*', '%', '<', '>', '!']
+    wordBreaker = ['+', '-', '*', '%', '<', '>', '!']
     alone = ['?', ';', ':', '(', ')', '{', '}', ',', '[', ']']
     temp = ""
     iterator = 0
     while iterator < len(filteredList):
-# handling identifiers or keywords.
+        # handling identifiers or keywords.
         if re.match("^[a-zA-Z0-9]$", filteredList[iterator]):
             if temp != "" and re.match("^[a-zA-Z0-9|_]$", temp[len(temp)-1]):
                 temp = temp + filteredList[iterator]
@@ -42,26 +42,54 @@ def WordTokernizer(charList):
             if temp != "" and temp[0] == '\'':
                 temp += '\''
                 BagOfWords.append(temp)
-                temp=""
+                temp = ""
             else:
                 temp = '\''
-                iterator +=1
+                iterator += 1
                 while filteredList[iterator] != '\'' and temp[len(temp)-1] != '\\':
                     temp += filteredList[iterator]
-                    iterator+=1
-                continue  
+                    iterator += 1
+                continue
 # handling strings.
         elif filteredList[iterator] == '\"':
             if temp != "" and temp[0] == '\"':
                 temp += '\"'
                 BagOfWords.append(temp)
-                temp=""
+                temp = ""
             else:
                 temp = '\"'
-                iterator +=1
+                iterator += 1
                 while filteredList[iterator] != '\"' and temp[len(temp)-1] != '\\':
                     temp += filteredList[iterator]
-                    iterator+=1
+                    iterator += 1
                 continue
-        iterator += 1    
+# handling word breakers.
+        elif filteredList[iterator] in wordBreaker:
+            if temp == "":
+                temp = filteredList[iterator]
+                if filteredList[iterator+1] == "=":
+                    iterator +=1
+                    temp += filteredList[iterator]
+                    BagOfWords.append(temp)
+                    temp =""
+                    continue
+                else:
+                    BagOfWords.append(temp)
+                    temp=""
+            else:
+                BagOfWords.append(temp)
+                temp = filteredList[iterator]
+                if filteredList[iterator+1] == "=":
+                    iterator +=1
+                    temp += filteredList[iterator]
+                    BagOfWords.append(temp)
+                    temp =""
+                    continue
+                else:
+                    BagOfWords.append(temp)
+                    temp=""
+# handling dot(.)
+        elif filteredList[iterator] == '.':
+            pass
+        iterator += 1
     return BagOfWords
