@@ -29,11 +29,11 @@ def Classes():
         "ClosBr":['{'],
         "OpenPa":['{'],
         "ClosPa":['{'],
-        "OpenBr":['{'],
-        "OpenBr":['{'],
-        "OpenBr":['{'],
-        "OpenBr":['{'],
-        "OpenBr":['{'],
+        # "OpenBr":['{'],
+        # "OpenBr":['{'],
+        # "OpenBr":['{'],
+        # "OpenBr":['{'],
+        # "OpenBr":['{'],
         'Equal': ['=']
     }
 
