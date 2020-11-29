@@ -1,17 +1,7 @@
-from ClassPartAllocator import ClassPartAllocator
+from BagOfWords.FilterStartingSpaces import FilterStartingSpaces
 import re
 
-
-def FilterStartingSpaces(charList=[]):
-    # return param
-    for char in charList:
-        if re.match("^[ ]$", char):
-            charList.pop(charList.index(char))
-        else:
-            return charList
-
-
-def WordTokernizer(charList):
+def WordsGenerator(charList):
     filteredList = FilterStartingSpaces(charList)
     BagOfWords = []
     wordBreaker = ['+', '-', '*', '%', '<', '>', '!']
@@ -68,28 +58,40 @@ def WordTokernizer(charList):
             if temp == "":
                 temp = filteredList[iterator]
                 if filteredList[iterator+1] == "=":
-                    iterator +=1
+                    iterator += 1
                     temp += filteredList[iterator]
                     BagOfWords.append(temp)
-                    temp =""
+                    temp = ""
                     continue
                 else:
                     BagOfWords.append(temp)
-                    temp=""
+                    temp = ""
             else:
                 BagOfWords.append(temp)
                 temp = filteredList[iterator]
                 if filteredList[iterator+1] == "=":
-                    iterator +=1
+                    iterator += 1
                     temp += filteredList[iterator]
                     BagOfWords.append(temp)
-                    temp =""
+                    temp = ""
                     continue
                 else:
                     BagOfWords.append(temp)
-                    temp=""
+                    temp = ""
+# handling assignment and equality operators.
+        elif filteredList[iterator] == '=':
+            if temp != "=":
+                BagOfWords.append(temp)
+                temp = filteredList[iterator]
+            elif temp == '=':
+                temp += filteredList[iterator]
+                BagOfWords.append(temp)
+                temp = ""
+            else:
+                temp += filteredList[iterator]
 # handling dot(.)
         elif filteredList[iterator] == '.':
             pass
+
         iterator += 1
     return BagOfWords
