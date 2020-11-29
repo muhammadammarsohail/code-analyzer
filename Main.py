@@ -3,7 +3,7 @@ if __name__ == "__main__":
     from Tokenization.WordTokenizer import WordTokernizer
 
     str = """int name = "nameer";
-    if(name=="ammar"){
+    if(name=="ammar"){'\n'
         print("well done");
         }""" 
     #may be it will come directly from the Text box.

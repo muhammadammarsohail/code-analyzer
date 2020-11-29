@@ -28,6 +28,7 @@ if(cc == ')
     if (cc == '.')
     {
         if(cc+1 == [0-9])
+        {
             if(temp == [0-9])
                 {
                     temp.append = cc
@@ -40,5 +41,37 @@ if(cc == ')
                 temp = null
                 temp.append=cc
             }
+        }
+        else treat it as an alone
     }
+
+    if(cc == '=')
+    {
+        if(temp[last] == +,-,*,/,%,=,<,>,!)
+        {
+            temp.append = cc
+            char++
+        }
+        else treat as an alone
+    }
+
+    bool str = false
+
+    if(cc == '"')
+    {
+        str = true
+        while(str == true)
+        {
+            char++
+            if(cc == '"' and temp[last] != '\')
+                str = false
+                temp.append = cc
+                word.append
+            else
+                temp.append = cc
+                
+        }
+    }
+
+
 
