@@ -2,12 +2,8 @@ import re #Importing ReGex module
 from flask import Flask, jsonify
 from Tokenization.WordTokenizer import WordTokernizer
 
-
 str = r"""
-int name = "nameer";
-jabtak(name=='a'){
-    print("Hello Wrold") a.anything
-}
+==++=*++===-+o-=o-o
 """ 
 #may be it will come directly from the Text box.
 
@@ -21,3 +17,4 @@ print(TokenSet)
 
 # if __name__=="__main__":
 #     app.run(debug=True)
+

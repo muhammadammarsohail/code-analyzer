@@ -9,31 +9,33 @@ def Classes():
         'Class': ['class'],
         'New': ['naya'],
         'Abstract': ['passive'],
-        'AndOr': ['aur','ya'],
+
+        'And': ['aur'],
+        'Or': ['ya'],
         "BrkCont": ['roko', 'jari'],  # Break Continue
         "DataType": ["int", "float", "bool", "string", "char"],  # Data types
         "AccMod": ["ijtemai", "infiradi", "protected", "andruni"],  # Access Modifiers
         "VirOver": ['arzi', 'badlo'],  # Virtual Override
-        "Extends": ['extends']
+        "Extends": ['extends']          #for inheritance
     }
 
     classesSymba = {
         'Not': ['!'],
         "PM": ['+', '-'],  # Plus Minus class
         "MDM": ['*', '/', '%'],  # Binary operator class
-        "CompOpr": ["+=", "-=", "*=", "/=", "%="],         # Comparision operator class
+
+        "ComAssi": ["+=", "-=", "*=", "/=", "%="],         # Compound Assignment operator
+        "RelOp": ['>','<','>=','<=','!=','=='],          #Relational Operators
         "Equal": ['='],  # Assignment operator class,
-        "IncOp": ['+o','-o'],
-        "TerminatorOpr": [';'],  # Comparision operator
+        "IncOp": ['+o','-o'],   # increment and decrement
+        "TerOpr": [';'],        #End of Statement
         "Comma":[','],
         "Dot":['.'],
         "OpenBr":['{'],
-        "ClosBr":['}'],
-        "OpenPa":['('],
-        "ClosPa":[')'],
-        "OpenSq":['['],
-        "ClosSq":[']'],
-        'Equal': ['=']
+        "ClosBr":['{'],
+        "OpenPa":['{'],
+        "ClosPa":['{']
+        
     }
 
     return [ClassesAlpha,classesSymba]
