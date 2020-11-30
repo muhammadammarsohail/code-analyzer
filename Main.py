@@ -3,7 +3,7 @@ from flask import Flask, jsonify
 from Tokenization.WordTokenizer import WordTokernizer
 
 str = r"""
-==++=*++===-+o-=o-o
+==++=*++===-+o-=o-o-o+o
 """ 
 #may be it will come directly from the Text box.
 
