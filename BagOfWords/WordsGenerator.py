@@ -88,6 +88,7 @@ def WordsGenerator(charList):
                 continue
 # handling word breakers.
         elif filteredList[iterator] in wordBreaker:
+            PM = ['+','-']
             if temp == "":
                 temp = filteredList[iterator]
                 if filteredList[iterator+1] == "=":
@@ -96,6 +97,12 @@ def WordsGenerator(charList):
                     BagOfWords.append(temp)
                     temp = ""
                     
+                elif filteredList[iterator] in PM and filteredList[iterator+1] == 'o':
+                    iterator += 1
+                    temp += filteredList[iterator]
+                    BagOfWords.append(temp)
+                    temp = ""
+
                 else:
                     BagOfWords.append(temp)
                     temp = ""
@@ -103,6 +110,12 @@ def WordsGenerator(charList):
                 BagOfWords.append(temp)
                 temp = filteredList[iterator]
                 if filteredList[iterator+1] == "=":
+                    iterator += 1
+                    temp += filteredList[iterator]
+                    BagOfWords.append(temp)
+                    temp = ""
+
+                elif filteredList[iterator] in PM and filteredList[iterator+1] == 'o':
                     iterator += 1
                     temp += filteredList[iterator]
                     BagOfWords.append(temp)
