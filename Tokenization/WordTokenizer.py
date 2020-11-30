@@ -11,14 +11,14 @@ def WordTokernizer(charList):
         if classPart == -1:
             if valuePart == "":
                 continue
-            elif re.match('^[a-zA-Z|_][a-zA-Z0-9]{0-100}$',valuePart): #for identifier
-                tokenSet.append((classPart,valuePart))
+            elif re.match('^[a-zA-Z|_]([a-zA-Z]{1-100})?$',valuePart): #for identifier
+                tokenSet.append(("Identifier",valuePart))
             elif valuePart[0]=="\"" and valuePart[len(valuePart)-1]=="\"": #for string
                 tokenSet.append(("String",valuePart))
             elif valuePart[0]=="\'" and valuePart[len(valuePart)-1]=="\'": #for character
                 tokenSet.append(("Character",valuePart))
             else:
-                tokenSet.append(("Character",valuePart))
-                # continue
+                tokenSet.append(("Invalid",valuePart))
+            continue
         tokenSet.append((classPart,valuePart))
     return tokenSet
