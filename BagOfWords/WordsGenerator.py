@@ -28,18 +28,51 @@ def WordsGenerator(charList):
             BagOfWords.append(temp) if temp != "" else False
             temp = ""
 # handling charcter.
-        elif filteredList[iterator] == '\'':
-            if temp != "" and temp[0] == '\'':
-                temp += '\''
+        # elif filteredList[iterator] == '\'':
+        #     if temp != "" and temp[0] == '\'':
+        #         temp += '\''
+        #         BagOfWords.append(temp)
+        #         temp = ""
+        #     else:
+        #         temp = '\''
+        #         iterator += 1
+        #         while filteredList[iterator] != '\'' and temp[len(temp)-1] != '\\':
+        #             temp += filteredList[iterator]
+        #             iterator += 1
+        #         continue
+
+        elif filteredList[iterator] == "\'":
+            print("harippa")
+            count = 0
+
+            if temp != "":
                 BagOfWords.append(temp)
                 temp = ""
-            else:
-                temp = '\''
+
+            # while count <= 2:
+            #     if count == 1 and filteredList[iterator] == "\\" and backSlash == False:
+            #         count-=1
+            #         backSlash == True
+
+            a = 2
+
+            while count <= a:
+                if count == 1 and filteredList[iterator] == "\\":
+                    a = 3
+
+            
+           
+                temp += filteredList[iterator]
+                count += 1
                 iterator += 1
-                while filteredList[iterator] != '\'' and temp[len(temp)-1] != '\\':
-                    temp += filteredList[iterator]
-                    iterator += 1
-                continue
+
+               
+            
+            BagOfWords.append(temp)
+            temp = ""
+            continue
+            
+            
 # handling strings.
         elif filteredList[iterator] == '\"':
             if temp != "" and temp[0] == '\"':
