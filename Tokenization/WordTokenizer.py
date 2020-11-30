@@ -5,4 +5,4 @@ import re
 def WordTokernizer(charList):
     bagOfWords = WordsGenerator(charList)
     print(bagOfWords)
-    return "Will return tokenset"
+    return bagOfWords
