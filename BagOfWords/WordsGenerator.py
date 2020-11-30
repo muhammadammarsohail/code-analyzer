@@ -95,7 +95,7 @@ def WordsGenerator(charList):
                     temp += filteredList[iterator]
                     BagOfWords.append(temp)
                     temp = ""
-                    continue
+                    
                 else:
                     BagOfWords.append(temp)
                     temp = ""
@@ -107,21 +107,33 @@ def WordsGenerator(charList):
                     temp += filteredList[iterator]
                     BagOfWords.append(temp)
                     temp = ""
-                    continue
+                    
                 else:
                     BagOfWords.append(temp)
                     temp = ""
 # handling assignment and equality operators.
+        
+        # elif filteredList[iterator] == '=':
+        #     if temp != "=" and temp != "":
+        #         BagOfWords.append(temp)
+        #         temp = filteredList[iterator]
+        #     elif temp == '=':
+        #         temp += filteredList[iterator]
+        #         BagOfWords.append(temp)
+        #         temp = ""
+        #     else:
+        #         temp += filteredList[iterator]
+        
         elif filteredList[iterator] == '=':
-            if temp != "=" and temp != "":
-                BagOfWords.append(temp)
-                temp = filteredList[iterator]
-            elif temp == '=':
+            if temp == "=":
                 temp += filteredList[iterator]
                 BagOfWords.append(temp)
                 temp = ""
+            elif temp == '':
+                 temp += filteredList[iterator]
             else:
-                temp += filteredList[iterator]
+                BagOfWords.append(temp)
+                temp = filteredList[iterator]
                 
 # handling dot(.)
         elif filteredList[iterator] == '.':
