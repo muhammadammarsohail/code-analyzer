@@ -113,7 +113,7 @@ def WordsGenerator(charList):
                     temp = ""
 # handling assignment and equality operators.
         elif filteredList[iterator] == '=':
-            if temp != "=":
+            if temp != "=" and temp != "":
                 BagOfWords.append(temp)
                 temp = filteredList[iterator]
             elif temp == '=':
@@ -122,6 +122,7 @@ def WordsGenerator(charList):
                 temp = ""
             else:
                 temp += filteredList[iterator]
+                
 # handling dot(.)
         elif filteredList[iterator] == '.':
             pass
