@@ -109,6 +109,8 @@ def WordsGenerator(charList):
             else:
                 if temp != "":
                     BagOfWords.append(temp)
+                    BagOfWords.append(filteredList[iterator])
+                    temp=""
                 else:
                     BagOfWords.append(filteredList[iterator])
 
