@@ -11,7 +11,7 @@ def WordsGenerator(charList):
     while iterator < len(filteredList):
         # handling identifiers or keywords.
         if re.match("^[a-zA-Z0-9]$", filteredList[iterator]):
-            if temp != "" and re.match("^[a-zA-Z0-9|_]$", temp[len(temp)-1]):
+            if temp != "" and re.match("^[a-zA-Z0-9|_|.]$", temp[len(temp)-1]):
                 temp = temp + filteredList[iterator]
             elif temp != "" and not re.match("^[a-zA-Z0-9|_]$", temp[len(temp)-1]):
                 BagOfWords.append(temp)
@@ -28,45 +28,22 @@ def WordsGenerator(charList):
             BagOfWords.append(temp) if temp != "" else False
             temp = ""
 # handling charcter.
-        # elif filteredList[iterator] == '\'':
-        #     if temp != "" and temp[0] == '\'':
-        #         temp += '\''
-        #         BagOfWords.append(temp)
-        #         temp = ""
-        #     else:
-        #         temp = '\''
-        #         iterator += 1
-        #         while filteredList[iterator] != '\'' and temp[len(temp)-1] != '\\':
-        #             temp += filteredList[iterator]
-        #             iterator += 1
-        #         continue
-
         elif filteredList[iterator] == "\'":
-            print("harippa")
             count = 0
 
             if temp != "":
                 BagOfWords.append(temp)
                 temp = ""
 
-            # while count <= 2:
-            #     if count == 1 and filteredList[iterator] == "\\" and backSlash == False:
-            #         count-=1
-            #         backSlash == True
-
             a = 2
 
             while count <= a:
                 if count == 1 and filteredList[iterator] == "\\":
                     a = 3
-
-            
-           
+                      
                 temp += filteredList[iterator]
                 count += 1
-                iterator += 1
-
-               
+                iterator += 1             
             
             BagOfWords.append(temp)
             temp = ""
@@ -95,7 +72,6 @@ def WordsGenerator(charList):
                     temp += filteredList[iterator]
                     BagOfWords.append(temp)
                     temp = ""
-                    continue
                 else:
                     BagOfWords.append(temp)
                     temp = ""
@@ -107,7 +83,6 @@ def WordsGenerator(charList):
                     temp += filteredList[iterator]
                     BagOfWords.append(temp)
                     temp = ""
-                    continue
                 else:
                     BagOfWords.append(temp)
                     temp = ""
@@ -124,7 +99,18 @@ def WordsGenerator(charList):
                 temp += filteredList[iterator]
 # handling dot(.)
         elif filteredList[iterator] == '.':
-            pass
+            if re.match('^[0-9]$',filteredList[iterator+1]):
+                try:
+                    if int(temp):
+                        temp += filteredList[iterator]
+                except:
+                    BagOfWords.append(temp)
+                    temp = filteredList[iterator]
+            else:
+                if temp != "":
+                    BagOfWords.append(temp)
+                else:
+                    BagOfWords.append(filteredList[iterator])
 
         iterator += 1
     return BagOfWords

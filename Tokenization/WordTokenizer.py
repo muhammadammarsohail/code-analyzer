@@ -5,5 +5,6 @@ import re
 def WordTokernizer(charList):
     bagOfWords = WordsGenerator(charList)
     for index in bagOfWords:
-        print(index)
+        print(index,end=' ')
+        print(ClassPartAllocator(index),end='\n')
     return bagOfWords
