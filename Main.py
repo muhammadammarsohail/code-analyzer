@@ -3,16 +3,32 @@ from flask import Flask, jsonify
 from Tokenization.WordTokenizer import WordTokernizer
 
 str = r"""
-==++=*++===-+o-=o-o-o+o
+    a=a+b+c%d%p;     
 """ 
+
+charArr = list(str) #Character list/array.
+TokenSet = WordTokernizer(charArr)
+print(TokenSet)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #may be it will come directly from the Text box.
 
 # app = Flask(__name__)
 # @app.route('/')
 # def handleHome():
-charArr = list(str) #Character list/array.
-TokenSet = WordTokernizer(charArr)
-print(TokenSet)
     # return jsonify(TokenSet)
 
 # if __name__=="__main__":

@@ -9,14 +9,14 @@ def Classes():
         'Class': ['class'],
         'New': ['naya'],
         'Abstract': ['passive'],
-
         'And': ['aur'],
         'Or': ['ya'],
         "BrkCont": ['roko', 'jari'],  # Break Continue
         "DataType": ["int", "float", "bool", "string", "char"],  # Data types
         "AccMod": ["ijtemai", "infiradi", "protected", "andruni"],  # Access Modifiers
         "VirOver": ['arzi', 'badlo'],  # Virtual Override
-        "Extends": ['extends']          #for inheritance
+        "Extends": ['extends'],          #for inheritance
+        "I/O":['write','read']
     }
 
     classesSymba = {
@@ -32,9 +32,9 @@ def Classes():
         "Comma":[','],
         "Dot":['.'],
         "OpenBr":['{'],
-        "ClosBr":['{'],
-        "OpenPa":['{'],
-        "ClosPa":['{']
+        "ClosBr":['}'],
+        "OpenPa":['('],
+        "ClosPa":[')']
         
     }
 

@@ -11,7 +11,7 @@ def WordTokernizer(charList):
         if classPart == -1:
             if valuePart == "":
                 continue
-            elif re.match('^[a-zA-Z|_]([a-zA-Z]{1-100})?$',valuePart): #for identifier
+            elif re.match('^[a-zA-Z0-9|_]{1,100}$',valuePart): #for identifier
                 tokenSet.append(("Identifier",valuePart))
             elif valuePart[0]=="\"" and valuePart[len(valuePart)-1]=="\"": #for string
                 tokenSet.append(("String",valuePart))
