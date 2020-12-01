@@ -1,5 +1,5 @@
-from BagOfWords.WordsGenerator import WordsGenerator
-from Tokenization.ClassPartAllocator import ClassPartAllocator
+from bagOfWords.WordsGenerator import WordsGenerator
+from tokenization.ClassPartAllocator import ClassPartAllocator
 import re
 
 def WordTokernizer(charList):

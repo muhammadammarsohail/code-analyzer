@@ -1,4 +1,4 @@
-from BagOfWords.FilterStartingSpaces import FilterStartingSpaces
+from bagOfWords.FilterStartingSpaces import FilterStartingSpaces
 import re
 
 def WordsGenerator(charList):

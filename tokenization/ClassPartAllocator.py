@@ -1,4 +1,4 @@
-from Tokenization.Classes import Classes as Cls
+from tokenization.Classes import Classes as Cls
 
 def ClassPartAllocator(param):
     ClassesApla,ClassesSymba = Cls()
