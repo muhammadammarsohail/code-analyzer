@@ -17,6 +17,10 @@ app = Flask(__name__)
 def handleHome():
     return render_template('index.html')
 
+@app.route('/tokenset')
+def handleTokenSet():
+    return jsonify(TokenSet)
+
 if __name__=="__main__":
     app.run(debug=True)
 
