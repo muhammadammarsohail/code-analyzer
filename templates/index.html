@@ -1,22 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{url_for('static',filename='styles/index.css')}}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='styles/index.css')}}"
+    />
     <title>Lexical Analyzer</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <textarea placeholder="Enter your code here." rows="5" cols="50"></textarea>
-        <section >
-            <button>Generate token set</button>
-        </section>
+      <textarea id="textBox" placeholder="Enter your code here."></textarea>
+      <section>
+        <button id="tokenButton">Generate token set</button>
+      </section>
     </div>
-<script>
-        fetch(`${window.location.href}/tokenset`)
-        .then(res=>res.json()).then(json=>console.log(json))
-        console.log(window.location.href)
-</script>
-</body>
+
+    <script>
+      document.getElementById("tokenButton").addEventListener("click", () => {
+        handleClick();
+      });
+      textBox = document.getElementById("textBox");
+      handleClick = () => {
+        let splitText = textBox.value.split("");
+        let jsonText = JSON.stringify(splitText);
+        let fetchOptions = {
+          // request
+          method: "POST",
+          // body
+          body: jsonText,
+          // headers
+          headers: {
+            "Content-type": "application/json; charset=UTF-8",
+          },
+        };
+        fetch(`${window.location.href}/tokenset`, fetchOptions)
+          .then((res) => res.json())
+          .then((jsonData) => {
+            console.log(jsonData);
+            textBox.value = "";
+            for (let i = 0; i < jsonData.length; i++) {
+              textBox.value +=
+                "( " + jsonData[i][0] + " , " + jsonData[i][1] + " )";
+              textBox.value += "\n";
+            }
+          });
+      };
+    </script>
+  </body>
 </html>

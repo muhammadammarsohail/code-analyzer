@@ -7,7 +7,6 @@ def WordTokernizer(charList):
     tokenSet = []
     for valuePart in bagOfWords:
         classPart=ClassPartAllocator(valuePart)
-        # print(valuePart)
         if classPart == -1:
             if valuePart == "":
                 continue
