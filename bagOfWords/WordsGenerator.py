@@ -2,6 +2,7 @@ from bagOfWords.FilterStartingSpaces import FilterStartingSpaces
 import re
 
 def WordsGenerator(charList):
+    lineNumber = 1
     filteredList = FilterStartingSpaces(charList)
     BagOfWords = []
     wordBreaker = ['+', '-', '*', '%', '<', '>', '!']
@@ -27,6 +28,9 @@ def WordsGenerator(charList):
         elif filteredList[iterator] == " " or filteredList[iterator] == '\n':
             BagOfWords.append(temp) if temp != "" else False
             temp = ""
+            if filteredList[iterator] == '\n':
+                lineNumber +=1
+                BagOfWords.append(lineNumber)
 # handling charcter.
         elif filteredList[iterator] == "\'":
             count = 0
@@ -102,18 +106,6 @@ def WordsGenerator(charList):
                 else:
                     BagOfWords.append(temp)
                     temp = ""
-# handling assignment and equality operators.
-        
-        # elif filteredList[iterator] == '=':
-        #     if temp != "=" and temp != "":
-        #         BagOfWords.append(temp)
-        #         temp = filteredList[iterator]
-        #     elif temp == '=':
-        #         temp += filteredList[iterator]
-        #         BagOfWords.append(temp)
-        #         temp = ""
-        #     else:
-        #         temp += filteredList[iterator]
         
         elif filteredList[iterator] == '=':
             if temp == "=":
