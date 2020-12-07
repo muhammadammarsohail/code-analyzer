@@ -41,7 +41,7 @@ button{
     width: 40%;
     height: 50%;
     background-color: #ecf0f3;
-    box-shadow: -13px -13px 20px #ffffff, 13px 13px 20px #cbced1;
+    box-shadow: -5px -5px 20px #ffffff, 5px 5px 20px #cbced1;
     outline: none;
     border: hidden;
     border-radius: 20px;
