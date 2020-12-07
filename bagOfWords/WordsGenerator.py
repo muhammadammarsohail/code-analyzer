@@ -1,6 +1,7 @@
 from bagOfWords.FilterStartingSpaces import FilterStartingSpaces
 import re
 
+
 def WordsGenerator(charList):
     lineNumber = 1
     filteredList = FilterStartingSpaces(charList)
@@ -19,18 +20,21 @@ def WordsGenerator(charList):
                 temp = filteredList[iterator]
             else:
                 temp = filteredList[iterator]
+
 # handling any of the character present in alone list.
         elif filteredList[iterator] in alone:
             BagOfWords.append(temp)
             temp = ""
             BagOfWords.append(filteredList[iterator])
+
 # handling spaces and newline charracter.
         elif filteredList[iterator] == " " or filteredList[iterator] == '\n':
             BagOfWords.append(temp) if temp != "" else False
             temp = ""
             if filteredList[iterator] == '\n':
-                lineNumber +=1
+                lineNumber += 1
                 BagOfWords.append(lineNumber)
+
 # handling charcter.
         elif filteredList[iterator] == "\'":
             count = 0
@@ -44,16 +48,15 @@ def WordsGenerator(charList):
             while count <= a:
                 if count == 1 and filteredList[iterator] == "\\":
                     a = 3
-                      
+
                 temp += filteredList[iterator]
                 count += 1
-                iterator += 1             
-            
+                iterator += 1
+
             BagOfWords.append(temp)
             temp = ""
             continue
-            
-            
+
 # handling strings.
         elif filteredList[iterator] == '\"':
             if temp != "" and temp[0] == '\"':
@@ -67,9 +70,10 @@ def WordsGenerator(charList):
                     temp += filteredList[iterator]
                     iterator += 1
                 continue
+
 # handling word breakers.
         elif filteredList[iterator] in wordBreaker:
-            PM = ['+','-']
+            PM = ['+', '-']
             if temp == "":
                 temp = filteredList[iterator]
                 if filteredList[iterator+1] == "=":
@@ -77,7 +81,7 @@ def WordsGenerator(charList):
                     temp += filteredList[iterator]
                     BagOfWords.append(temp)
                     temp = ""
-                    
+
                 elif filteredList[iterator] in PM and filteredList[iterator+1] == 'o':
                     iterator += 1
                     temp += filteredList[iterator]
@@ -96,31 +100,30 @@ def WordsGenerator(charList):
                     BagOfWords.append(temp)
                     temp = ""
 
-
                 elif filteredList[iterator] in PM and filteredList[iterator+1] == 'o':
                     iterator += 1
                     temp += filteredList[iterator]
                     BagOfWords.append(temp)
                     temp = ""
-                    
+
                 else:
                     BagOfWords.append(temp)
                     temp = ""
-        
+
         elif filteredList[iterator] == '=':
             if temp == "=":
                 temp += filteredList[iterator]
                 BagOfWords.append(temp)
                 temp = ""
             elif temp == '':
-                 temp += filteredList[iterator]
+                temp += filteredList[iterator]
             else:
                 BagOfWords.append(temp)
                 temp = filteredList[iterator]
-                
+
 # handling dot(.)
         elif filteredList[iterator] == '.':
-            if re.match('^[0-9]$',filteredList[iterator+1]):
+            if re.match('^[0-9]$', filteredList[iterator+1]):
                 try:
                     if int(temp):
                         temp += filteredList[iterator]
@@ -131,9 +134,24 @@ def WordsGenerator(charList):
                 if temp != "":
                     BagOfWords.append(temp)
                     BagOfWords.append(filteredList[iterator])
-                    temp=""
+                    temp = ""
                 else:
                     BagOfWords.append(filteredList[iterator])
+
+# handling comments
+        elif filteredList[iterator] == "#":
+            print("in #")
+            BagOfWords.append(temp)
+            temp = ""
+            if filteredList[iterator+1] == "~":
+                iterator+=1
+                while filteredList[iterator+1] != "~" and filteredList[iterator+2]!="#":
+                    iterator += 1
+                iterator+=2
+            else:
+                print("loop2")
+                while filteredList[iterator] != '\n':
+                    iterator += 1
 
         iterator += 1
     return BagOfWords
