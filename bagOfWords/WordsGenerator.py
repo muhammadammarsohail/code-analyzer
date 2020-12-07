@@ -152,4 +152,6 @@ def WordsGenerator(charList):
                     iterator += 1
 
         iterator += 1
+    if temp != "":
+        BagOfWords.append(temp)
     return BagOfWords

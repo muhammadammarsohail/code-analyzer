@@ -39,7 +39,7 @@ section{
     justify-content: center;
 }
 
-button{
+#tokenButton,#resetButton{
     width: 40%;
     height: 50%;
     background-color: #ecf0f3;
@@ -49,9 +49,13 @@ button{
     border-radius: 20px;
 }
 
-button:active{
+#tokenButton:active,#resetButton:active{
     box-shadow:inset -5px -5px 10px #ffffff,inset 5px 5px 10px #cbced1;
     
+}
+
+#resetButton{
+  display: none !important;
 }
 
 #tableContainer{
