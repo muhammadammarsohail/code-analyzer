@@ -23,13 +23,17 @@ def WordTokernizer(charList):
                     # elif re.match('^[0-9]{1,25}$',valuePart): #for integer constant
                     #     tokenSet.append(("Integer constant",valuePart,lineNumber)) 
                     elif valuePart=="true" or valuePart=="false": #for bool constant
-                        tokenSet.append(("Boolean constant",valuePart,lineNumber)) 
+                        tokenSet.append(("BoolConst",valuePart,lineNumber)) 
+
                     elif re.match('^[a-zA-Z0-9|_]{1,100}$',valuePart): #for identifier
                         tokenSet.append(("Identifier",valuePart,lineNumber))
+
                     elif valuePart[0]=="\"" and valuePart[len(valuePart)-1]=="\"": #for string constant
-                        tokenSet.append(("String constant",valuePart,lineNumber))
+                        tokenSet.append(("StrConst",valuePart,lineNumber))
+
                     elif valuePart[0]=="\'" and valuePart[len(valuePart)-1]=="\'": #for character constant
-                        tokenSet.append(("Character constant",valuePart,lineNumber))
+                        tokenSet.append(("CharConst",valuePart,lineNumber))
+
                     else:
                         tokenSet.append(("Invalid",valuePart,lineNumber))
                     continue
@@ -37,7 +41,7 @@ def WordTokernizer(charList):
                     tokenSet.append(("Float constant",valuePart,lineNumber))
                     continue
             else:
-                    tokenSet.append(("Integer constant",valuePart,lineNumber))
+                    tokenSet.append(("IntConst",valuePart,lineNumber))
                     continue
 
         tokenSet.append((classPart,valuePart,lineNumber))

@@ -5,24 +5,77 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
       href="{{url_for('static',filename='styles/index.css')}}"
     />
     <title>Lexical Analyzer</title>
   </head>
+
   <body>
     <div class="container">
+      <div id="tableContainer">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Class Part</th>
+              <th scope="col">Value Part</th>
+              <th scope="col">Line Number</th>
+            </tr>
+          </thead>
+          <tbody id= "tableBody">
+
+          </tbody>
+          </tbody>
+        </table>
+      </div>
       <textarea id="textBox" placeholder="Enter your code here."></textarea>
       <section>
         <button id="tokenButton">Generate token set</button>
       </section>
     </div>
 
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+
     <script>
-      document.getElementById("tokenButton").addEventListener("click", () => {
-        handleClick();
+      tokenButton=document.getElementById("tokenButton");
+
+      tokenButton.addEventListener("click", () => {
+        handleGenerateTokenSet();
       });
       textBox = document.getElementById("textBox");
-      handleClick = () => {
+      tableBody = document.getElementById("tableBody");
+      tableContainer = document.getElementById('tableContainer');
+
+      let showEditor = ()=>{
+        textBox.style.display = "block";
+        tableContainer.style.display = "none";
+        tokenButton.innerText = "Generate Token Set";
+        tokenButton.addEventListener("click", () => {
+        handleGenerateTokenSet();
+      });
+      }
+
+      handleGenerateTokenSet = () => {
         let splitText = textBox.value.split("");
         let jsonText = JSON.stringify(splitText);
         let fetchOptions = {
@@ -38,12 +91,24 @@
         fetch(`${window.location.href}/tokenset`, fetchOptions)
           .then((res) => res.json())
           .then((jsonData) => {
-            console.log(jsonData);
+            // console.log(jsonData);
             textBox.value = "";
+            textBox.style.display = "none"
+            tableContainer.style.display = "block"
+            tableBody.innerHTML = ""
             for (let i = 0; i < jsonData.length; i++) {
-              textBox.value +=
-                "( " + jsonData[i][0] + " , " + jsonData[i][1] +", " + jsonData[i][2]+ " )";
-              textBox.value += "\n";
+
+                tableBody.innerHTML += `
+                  <tr>
+                    <td>${jsonData[i][0]}</td>
+                    <td>${jsonData[i][1]}</td>
+                    <td>${jsonData[i][2]}</td>
+                    </tr>
+                ` 
+            tokenButton.innerText = "Reset Window"
+            tokenButton.addEventListener('click',()=>{
+              showEditor()
+            })
             }
           });
       };

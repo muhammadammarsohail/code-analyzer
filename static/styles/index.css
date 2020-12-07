@@ -15,16 +15,18 @@ body {
   background-color: transparent;
   border-radius: 20px;
   border: hidden;
+  box-shadow: -13px -13px 20px #ffffff, 13px 13px 20px #cbced1;
+  overflow: hidden;
 }
 textarea {
-  width: 100%;
+  width: 98%;
   height: 80%;
   resize: none;
   border-radius: 20px;
   outline: none;
   padding: 10px;
   background-color: #ecf0f3;
-  box-shadow: -13px -13px 20px #ffffff, 13px 13px 20px #cbced1;
+  /* box-shadow: -13px -13px 20px #ffffff, 13px 13px 20px #cbced1; */
   border: hidden;
   display: pointer;
 }
@@ -42,7 +44,7 @@ button{
     height: 50%;
     background-color: #ecf0f3;
     box-shadow: -5px -5px 20px #ffffff, 5px 5px 20px #cbced1;
-    outline: none;
+    outline: none !important;
     border: hidden;
     border-radius: 20px;
 }
@@ -50,4 +52,18 @@ button{
 button:active{
     box-shadow:inset -5px -5px 10px #ffffff,inset 5px 5px 10px #cbced1;
     
+}
+
+#tableContainer{
+  width: 100%;
+  height: 80% !important;
+  border-radius: 20px;
+  outline: none;
+  background-color: #ecf0f3;
+  overflow-x: hidden  !important;
+  overflow-y: scroll !important;
+  display: none;
+}
+table{
+  overflow: scroll !important;
 }
