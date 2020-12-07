@@ -10,8 +10,12 @@ def handleHome():
 @app.route('/tokenset', methods = ["GET","POST"])
 def handleTokenSet():
     if request.method == "POST":
-        tokenSet = WordTokernizer(request.json)
-        return jsonify(tokenSet)
+        try:
+            tokenSet = WordTokernizer(request.json)
+        except:
+            return jsonify([['ERROR','Internal Server Error','500']])
+        else:    
+            return jsonify(tokenSet)
 
 if __name__=="__main__":
     app.run(debug=True)
