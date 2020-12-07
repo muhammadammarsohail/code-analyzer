@@ -6,7 +6,7 @@ def WordsGenerator(charList):
     lineNumber = 1
     filteredList = FilterStartingSpaces(charList)
     BagOfWords = []
-    wordBreaker = ['+', '-', '*', '%', '<', '>', '!']
+    wordBreaker = ['+', '-', '*','/', '%', '<', '>', '!']
     alone = ['?', ';', ':', '(', ')', '{', '}', ',', '[', ']']
     temp = ""
     iterator = 0
@@ -140,7 +140,6 @@ def WordsGenerator(charList):
 
 # handling comments
         elif filteredList[iterator] == "#":
-            print("in #")
             BagOfWords.append(temp)
             temp = ""
             if filteredList[iterator+1] == "~":
@@ -149,7 +148,6 @@ def WordsGenerator(charList):
                     iterator += 1
                 iterator+=2
             else:
-                print("loop2")
                 while filteredList[iterator] != '\n':
                     iterator += 1
 
