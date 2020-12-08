@@ -58,9 +58,9 @@
       ></script>
       
       <script>
+        tokenButton = document.getElementById("tokenButton");
+        resetButton = document.getElementById("resetButton");
         resetButton.style.display = "none";
-      tokenButton = document.getElementById("tokenButton");
-      resetButton = document.getElementById("resetButton");
 
       tokenButton.addEventListener("click", () => {
         handleGenerateTokenSet();
@@ -73,7 +73,6 @@
       textBox = document.getElementById("textBox");
       tableBody = document.getElementById("tableBody");
       tableContainer = document.getElementById('tableContainer');
-
 
       
       let handleResetWindow = ()=>{
