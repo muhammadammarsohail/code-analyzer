@@ -20,21 +20,21 @@ def Classes():
     }
 
     classesSymba = {
-        'Not': ['!'],
+        '!': ['!'],
         "PM": ['+', '-'],  # Plus Minus class
         "MDM": ['*', '/', '%'],  # Binary operator class
 
         "ComAssi": ["+=", "-=", "*=", "/=", "%="],         # Compound Assignment operator
         "RelOp": ['>','<','>=','<=','!=','=='],          #Relational Operators
-        "Equal": ['='],  # Assignment operator class,
+        "=": ['='],  # Assignment operator class,
         "IncOp": ['+o','-o'],   # increment and decrement
-        "TerOpr": [';'],        #End of Statement
-        "Comma":[','],
-        "Dot":['.'],
-        "OpenBr":['{'],
-        "ClosBr":['}'],
-        "OpenPa":['('],
-        "ClosPa":[')']
+        ";": [';'],        #End of Statement
+        ",":[','],
+        ".":['.'],
+        "{":['{'],
+        "}":['}'],
+        "(":['('],
+        ")":[')']
         
     }
 
