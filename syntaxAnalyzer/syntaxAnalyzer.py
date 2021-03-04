@@ -570,148 +570,327 @@ class SA:
     # return False
 
     def args(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "ID" or self.gTokenSet[self.gIndex][0] == "IntConst" or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst":
+            if self.single():
+                self.gIndex+=1
+                if self.multiArgs():
+                    return True
+        if self.gTokenSet[self.gIndex][0] == ")":
+            return True
         return False
 
     def multiArgs(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == ",":
+            self.gIndex+=1
+            if self.single():
+                self.gIndex+=1
+                if self.multiArgs():
+                    return True
+        if self.gTokenSet[self.gIndex][0] == ")":
+            return True
         return False
 
     def single(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "ID":
+            self.gIndex+=1
+            if self.arr_func():
+                return True
+        if self.gTokenSet[self.gIndex][0] == "IntConst" or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst":
+            if self.const():
+                return True
         return False
     # Convention: '_' will be a an alternative of '/' in CFG
 
     def arr_func(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "[":
+            self.gIndex+=1
+            if self.OE():
+                self.gIndex+=1
+                if self.gTokenSet[self.gIndex][0] == "]":
+                    return True
+        if self.gTokenSet[self.gIndex][0] == "(":
+            self.gIndex+=1
+            if self.args():
+                if self.gTokenSet[self.gIndex][0] == ")":
+                    return True
+        if self.gTokenSet[self.gIndex][0] == "," or self.gTokenSet[self.gIndex][0] == ")":
+            return True
         return False
 
     def OE(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "ID" or self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst" or self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "!" or self.gTokenSet[self.gIndex][0] == "inc_dec":
+            if self.ae():
+                self.gIndex+=1
+                if self.OE_():
+                    return True
         return False
     # alternate of OE'
 
     def OE_(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "ya":
+            self.gIndex+=1
+            if self.ae():
+                self.gIndex+=1
+                if self.OE_():
+                    return True
+        if self.gTokenSet[self.gIndex][0] == "," or self.gTokenSet[self.gIndex][0] == ")" or self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "]":
+            return True
         return False
 
     def ae(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "ID" or self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst" or self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "!" or self.gTokenSet[self.gIndex][0] == "inc_dec":
+            if self.re():
+                self.gIndex+=1
+                if self.ae_():
+                    return True
         return False
     # alternate of AE'
 
     def ae_(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "aur":
+            self.gIndex+=1
+            if self.re():
+                self.gIndex+=1
+                if self.ae_():
+                    return True
+        if self.gTokenSet[self.gIndex][0] == "ya" or self.gTokenSet[self.gIndex][0] == "," or self.gTokenSet[self.gIndex][0] == ")" or self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "]":
+            return True
         return False
 
     def re(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "ID" or self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst" or self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "!" or self.gTokenSet[self.gIndex][0] == "inc_dec":
+            if self.E():
+                self.gIndex+=1
+                if self.re_():
+                    return True
         return False
     # alternate of RE'
 
     def re_(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "RelOp":
+            self.gIndex+=1
+            if self.E():
+                self.gIndex+=1
+                if self.re_():
+                    return True
+        if self.gTokenSet[self.gIndex][0] == "aur" or self.gTokenSet[self.gIndex][0] == "ya" or self.gTokenSet[self.gIndex][0] == "," or self.gTokenSet[self.gIndex][0] == ")" or self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "]":
+            return True
         return False
 
     def E(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "ID" or self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst" or self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "!" or self.gTokenSet[self.gIndex][0] == "inc_dec":
+            if self.T():
+                self.gIndex+=1
+                if self.E_():
+                    return True
         return False
     # alternate of e'
 
     def E_(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "PM":
+            self.gIndex+=1
+            if self.T():
+                self.gIndex+=1
+                if self.E_():
+                    return True
+        if self.gTokenSet[self.gIndex][0] == "RelOp" or self.gTokenSet[self.gIndex][0] == "aur" or self.gTokenSet[self.gIndex][0] == "ya" or self.gTokenSet[self.gIndex][0] == "," or self.gTokenSet[self.gIndex][0] == ")" or self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "]":
+            return True
         return False
 
     def T(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "ID" or self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst" or self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "!" or self.gTokenSet[self.gIndex][0] == "inc_dec":
+            if self.F():
+                self.gIndex+=1
+                if self.T_():
+                    return True
         return False
     # alternate of T'
 
     def T_(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "MDM":
+            self.gIndex+=1
+            if self.F():
+                self.gIndex+=1
+                if self.T_():
+                    return True
+        if self.gTokenSet[self.gIndex][0] == "PM" or self.gTokenSet[self.gIndex][0] == "RelOp" or self.gTokenSet[self.gIndex][0] == "aur" or self.gTokenSet[self.gIndex][0] == "ya" or self.gTokenSet[self.gIndex][0] == "," or self.gTokenSet[self.gIndex][0] == ")" or self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "]":
+            return True
         return False
 
     def F(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "ID":
+            self.gIndex+=1
+            if self.call():
+                return True
+        if self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst":
+            if self.const():
+                return True
+        if self.gTokenSet[self.gIndex][0] == "(":
+            self.gIndex+=1
+            if self.OE():
+                self.gIndex+=1
+                if self.gTokenSet[self.gIndex][0] == ")":
+                    return True 
+        if self.gTokenSet[self.gIndex][0] == "!": 
+            self.gIndex+=1
+            if self.F():
+                return True
+        if self.gTokenSet[self.gIndex][0] == "inc_dec":
+            self.gIndex+=1
+            if  self.gTokenSet[self.gIndex][0] == "ID":
+                self.gIndex+=1
+                if self.X():
+                    return True
+
         return False
 
     def call(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "[" or  self.gTokenSet[self.gIndex][0] == "." or  self.gTokenSet[self.gIndex][0] == "inc_dec" :
+            if self.XY_F():
+                return True
+        if self.gTokenSet[self.gIndex][0] == "MDM" or  self.gTokenSet[self.gIndex][0] == "PM" or  self.gTokenSet[self.gIndex][0] == "RelOp" or  self.gTokenSet[self.gIndex][0] == "aur" or  self.gTokenSet[self.gIndex][0] == "ya" or  self.gTokenSet[self.gIndex][0] == "," or  self.gTokenSet[self.gIndex][0] == ")" or  self.gTokenSet[self.gIndex][0] == ";" or  self.gTokenSet[self.gIndex][0] == "]":
+            return True
         return False
 
     def X(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == ".":
+            self.gIndex+=1
+            if self.gTokenSet[self.gIndex][0] == "ID":
+                if self.X():
+                    return True
+        if self.gTokenSet[self.gIndex][0] == "(" or  self.gTokenSet[self.gIndex][0] == "[":
+            if self.arrInd_Call():
+                return True
+        if self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "MDM" or  self.gTokenSet[self.gIndex][0] == "PM" or  self.gTokenSet[self.gIndex][0] == "RelOp" or  self.gTokenSet[self.gIndex][0] == "aur" or  self.gTokenSet[self.gIndex][0] == "ya" or  self.gTokenSet[self.gIndex][0] == "," or  self.gTokenSet[self.gIndex][0] == ")" or  self.gTokenSet[self.gIndex][0] == ";" or  self.gTokenSet[self.gIndex][0] == "]":
+            return True
         return False
 
     def dotID_X(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == ".":
+            self.gIndex+=1
+            if self.gTokenSet[self.gIndex][0] == "ID":
+                if self.X():
+                    return True
+        if self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "MDM" or  self.gTokenSet[self.gIndex][0] == "PM" or  self.gTokenSet[self.gIndex][0] == "RelOp" or  self.gTokenSet[self.gIndex][0] == "aur" or  self.gTokenSet[self.gIndex][0] == "ya" or  self.gTokenSet[self.gIndex][0] == "," or  self.gTokenSet[self.gIndex][0] == ")" or  self.gTokenSet[self.gIndex][0] == ";" or  self.gTokenSet[self.gIndex][0] == "]":
+            return True
         return False
 
     def arrInd_Call(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
-        return False
-
-    def Y(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
-        return False
-
-    def dotID_Y(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
-        return False
-
-
-    def y2(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "[":
+            self.gIndex+=1
+            if self.OE():
+                self.gIndex+=1
+                if self.gTokenSet[self.gIndex][0] == "]":
+                    self.gIndex+=1
+                    if self.dotID_X():
+                        return True
+        if self.gTokenSet[self.gIndex][0] == "(":
+            self.gIndex+=1
+            if self.args():
+                if self.gTokenSet[self.gIndex][0] == ")":
+                    self.gIndex+=1
+                    if self.gTokenSet[self.gIndex][0] == ".":
+                        self.gIndex+=1
+                        if self.gTokenSet[self.gIndex][0] == "ID":
+                            self.gIndex+=1
+                            if self.X():
+                                return True
         return False
 
     def xy(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "(":
+            self.gIndex+=1
+            if self.args():
+                if self.gTokenSet[self.gIndex][0] == ")":
+                    self.gIndex+=1
+                    if self.nt():
+                        return True
+        if self.gTokenSet[self.gIndex][0] == "[":
+            self.gIndex+=1
+            if self.OE():
+                self.gIndex+=1
+                if self.gTokenSet[self.gIndex][0] == "]":
+                    self.gIndex+=1
+                    if self.nt2():
+                        return True
+        if self.gTokenSet[self.gIndex][0] == ".":
+            self.gIndex+=1
+            if self.gTokenSet[self.gIndex][0] == "ID":
+                self.gIndex+=1
+                if self.xy():
+                    return True
+        if self.gTokenSet[self.gIndex][0] == "="or self.gTokenSet[self.gIndex][0] == "Comp_asgn" or self.gTokenSet[self.gIndex][0] == "inc_dec":
+            if self.asgnInc():
+                return True
         return False
 
     def nt(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == ".":
+            self.gIndex+=1
+            if self.gTokenSet[self.gIndex][0] == "ID":
+                self.gIndex+=1
+                if self.xy():
+                    return True            
+        if self.gTokenSet[self.gIndex][0] == ";":
+            return True
         return False
 
     def nt2(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == ".":
+            self.gIndex+=1
+            if self.gTokenSet[self.gIndex][0] == "ID":
+                self.gIndex+=1
+                if self.xy():
+                    return True        
+        if self.gTokenSet[self.gIndex][0] == "="or self.gTokenSet[self.gIndex][0] == "Comp_asgn" or self.gTokenSet[self.gIndex][0] == "inc_dec":
+            if self.asgnInc():
+                return True            
         return False
 
     def XY_F(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == "(":
+            self.gIndex+=1
+            if self.args():
+                if self.gTokenSet[self.gIndex][0] == ")":
+                    self.gIndex+=1
+                    if self.NT_F():
+                        return True
+        if self.gTokenSet[self.gIndex][0] == "[":
+            self.gIndex+=1
+            if self.OE():
+                self.gIndex+=1
+                if self.gTokenSet[self.gIndex][0] == "]":
+                    self.gIndex+=1
+                    if self.NT2_F():
+                        return True
+        if self.gTokenSet[self.gIndex][0] == ".":
+            self.gIndex+=1
+            if self.gTokenSet[self.gIndex][0] == "ID":
+                self.gIndex+=1
+                if self.XY_F():
+                    return True
+        if self.gTokenSet[self.gIndex][0] == "inc_dec":
+            return True
         return False
 
-    def NF_F(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+    def NT_F(self):
+        if self.gTokenSet[self.gIndex][0] == ".":
+            self.gIndex+=1
+            if self.gTokenSet[self.gIndex][0] == "ID":
+                self.gIndex+=1
+                if self.XY_F():
+                    return True            
+        if self.gTokenSet[self.gIndex][0] == "MDM" or  self.gTokenSet[self.gIndex][0] == "PM" or  self.gTokenSet[self.gIndex][0] == "RelOp" or  self.gTokenSet[self.gIndex][0] == "aur" or  self.gTokenSet[self.gIndex][0] == "ya" or  self.gTokenSet[self.gIndex][0] == "," or  self.gTokenSet[self.gIndex][0] == ")" or  self.gTokenSet[self.gIndex][0] == ";" or  self.gTokenSet[self.gIndex][0] == "]":
+            return True
         return False
 
     def NT2_F(self):
-        if self.gTokenSet[self.gIndex][0] == "":
-            pass
+        if self.gTokenSet[self.gIndex][0] == ".":
+            self.gIndex+=1
+            if self.gTokenSet[self.gIndex][0] == "ID":
+                self.gIndex+=1
+                if self.XY_F():
+                    return True        
+        if self.gTokenSet[self.gIndex][0] == "inc_dec":
+            return True
         return False
