@@ -16,7 +16,7 @@ class SA:
     def S(self):
         if self.gTokenSet[self.gIndex][0] == "$":
             return True
-        elif self.gTokenSet[self.gIndex][0] == "AM" or self.gTokenSet[self.gIndex][0] == "$":
+        elif self.gTokenSet[self.gIndex][0] == "AM" or self.gTokenSet[self.gIndex][0] == "class":
             if self.defs():
                 # self.gIndex += 1
                 if self.gTokenSet[self.gIndex][0] == "class":
@@ -27,8 +27,10 @@ class SA:
                             # self.gIndex += 1
                             if self.gTokenSet[self.gIndex][0] == "{":
                                 self.gIndex += 1
+
                                 if self.cBody_Elements():
-                                    self.gIndex += 1
+                                    # self.gIndex += 1
+
                                     if self.gTokenSet[self.gIndex][0] == "void":
                                         self.gIndex += 1
                                         if self.gTokenSet[self.gIndex][0] == "Main":
@@ -40,7 +42,7 @@ class SA:
                                                     if self.Body():
                                                         self.gIndex += 1
                                                         if self.cBody_Elements():
-                                                            self.gIndex += 1
+                                                            # self.gIndex += 1
                                                             if self.gTokenSet[self.gIndex][0] == "}":
                                                                 self.gIndex += 1
                                                                 if self.defs():
@@ -503,7 +505,7 @@ class SA:
             self.gIndex += 1
             if self.proc():
                 return True
-        elif self.gTokenSet[self.gIndex][0] == "ijtemai" or self.gTokenSet[self.gIndex][0] == "}":
+        elif self.gTokenSet[self.gIndex][0] == "void" or self.gTokenSet[self.gIndex][0] == "}":
             return True
         return False
 

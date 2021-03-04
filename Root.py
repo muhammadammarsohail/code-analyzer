@@ -6,10 +6,7 @@ from syntaxAnalyzer.syntaxAnalyzer import SA
 #                           Implemetation
 # Word tokenizer will generate the token sets.
 tokenSets = WordTokernizer(
-"""ijtemai class meri{
-
-}
-class myClass{
+"""class myClass{
     void Main(){
 
     } 
