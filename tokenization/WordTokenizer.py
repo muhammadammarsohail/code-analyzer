@@ -3,6 +3,8 @@ from tokenization.ClassPartAllocator import ClassPartAllocator
 import re
 
 def WordTokernizer(charList):
+    if charList=="":
+        return []
     bagOfWords = WordsGenerator(charList)
     lineNumber = 1
     tokenSet = []
@@ -26,7 +28,7 @@ def WordTokernizer(charList):
                         tokenSet.append(("BoolConst",valuePart,lineNumber)) 
 
                     elif re.match('^[a-zA-Z0-9|_]{1,100}$',valuePart): #for identifier
-                        tokenSet.append(("Identifier",valuePart,lineNumber))
+                        tokenSet.append(("ID",valuePart,lineNumber))
 
                     elif valuePart[0]=="\"" and valuePart[len(valuePart)-1]=="\"": #for string constant
                         tokenSet.append(("StrConst",valuePart,lineNumber))
@@ -38,7 +40,7 @@ def WordTokernizer(charList):
                         tokenSet.append(("Invalid",valuePart,lineNumber))
                     continue
                 else:
-                    tokenSet.append(("Float constant",valuePart,lineNumber))
+                    tokenSet.append(("FloatConst",valuePart,lineNumber))
                     continue
             else:
                     tokenSet.append(("IntConst",valuePart,lineNumber))

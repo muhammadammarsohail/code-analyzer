@@ -1,22 +1,21 @@
 def Classes():
     ClassesAlpha = {
-        "Void": ['void'],
-        "While": ['jabtak'],
-        "If": ['agar'],
-        'Else': ['warna'],
-        'Return': ['return'],
-        'Main': ['main'],
-        'Class': ['class'],
-        'New': ['naya'],
-        'Abstract': ['passive'],
-        'And': ['aur'],
-        'Or': ['ya'],
+        "void": ['void'],
+        "jabtak": ['jabtak'],
+        "agar": ['agar'],
+        'warna': ['warna'],
+        'return': ['return'],
+        'Main': ['Main'],
+        'class': ['class'],
+        'naya': ['naya'],
+        'passive': ['passive'],
+        'aur': ['aur'],
+        'ya': ['ya'],
         "BrkCont": ['roko', 'jari'],  # Break Continue
-        "DataType": ["int", "float", "bool", "string", "char"],  # Data types
-        "AccMod": ["ijtemai", "infiradi", "protected", "andruni"],  # Access Modifiers
-        "VirOver": ['arzi', 'badlo'],  # Virtual Override
-        "Extends": ['extends'],          #for inheritance
-        "I/O":['write','read']
+        "DT": ["int", "float", "bool", "string", "char"],  # Data types
+        "AM": ["ijtemai", "infiradi", "protected", "andruni"],  # Access Modifiers
+        "VO": ['arzi', 'badlo'],  # Virtual Override
+        "extends": ['extends'],          #for inheritance
     }
 
     classesSymba = {
@@ -24,10 +23,10 @@ def Classes():
         "PM": ['+', '-'],  # Plus Minus class
         "MDM": ['*', '/', '%'],  # Binary operator class
 
-        "ComAssi": ["+=", "-=", "*=", "/=", "%="],         # Compound Assignment operator
+        "Comp_asgn": ["+=", "-=", "*=", "/=", "%="],         # Compound Assignment operator
         "RelOp": ['>','<','>=','<=','!=','=='],          #Relational Operators
         "=": ['='],  # Assignment operator class,
-        "IncOp": ['+o','-o'],   # increment and decrement
+        "inc_dec": ['+o','-o'],   # increment and decrement
         ";": [';'],        #End of Statement
         ",":[','],
         ".":['.'],
