@@ -107,7 +107,7 @@ class SA:
     def construct(self):
         if self.gTokenSet[self.gIndex][0] == "AM":
             self.gIndex += 1
-            if Ret_DT():
+            if self.Ret_DT():
                 self.gIndex += 1
                 if self.gTokenSet[self.gIndex][0] == "ID":
                     self.gIndex += 1
@@ -145,7 +145,7 @@ class SA:
     def MultiPara(self):
         if self.gTokenSet[self.gIndex][0] == ",":
             self.gIndex += 1
-            if OE():
+            if self.OE():
                 self.gIndex += 1
                 if self.MultiPara():
                     return True
@@ -263,7 +263,7 @@ class SA:
 
     def sst(self):
         if self.gTokenSet[self.gIndex][0] == "DT":
-            if self.dec():
+            if self.Dec():
                 return True
         elif self.gTokenSet[self.gIndex][0] == "jabtak":
             if self.cLoop():
@@ -312,7 +312,7 @@ class SA:
                                     if self.gTokenSet[self.gIndex][0] == ";":
                                         return True
         elif self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "[" or self.gTokenSet[self.gIndex][0] == "." or self.gTokenSet[self.gIndex][0] == "inc_dec" or self.gTokenSet[self.gIndex][0] == "=" or self.gTokenSet[self.gIndex][0] == "Comp_asgn":
-            if self.XY():
+            if self.xy():
                 self.gIndex += 1
                 if self.gTokenSet[self.gIndex][0] == ";":
                     return True
@@ -518,7 +518,7 @@ class SA:
                     self.gIndex += 1
                     if self.gTokenSet[self.gIndex][0] == "(":
                         self.gIndex += 1
-                        if Para():
+                        if self.Para():
                             self.gIndex += 1
                             if self.gTokenSet[self.gIndex][0] == ")":
                                 self.gIndex += 1
@@ -526,7 +526,7 @@ class SA:
                                     return True
         elif self.gTokenSet[self.gIndex][0] == "create":
             self.gIndex += 1
-            if Ret_DT():
+            if self.Ret_DT():
                 self.gIndex += 1
                 if self.gTokenSet[self.gIndex][0] == "ID":
                     self.gIndex += 1
