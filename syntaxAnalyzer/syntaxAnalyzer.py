@@ -60,24 +60,24 @@ class SA:
             return True
         return False
 
-    def func(self):
-        if self.gTokenSet[self.gIndex][0] == "AM":
-            self.gIndex += 1
-            if self.Nature():
-                # self.gIndex += 1
-                if self.Ret_DT():
-                    self.gIndex += 1
-                    if self.gTokenSet[self.gIndex][0] == "ID":
-                        self.gIndex += 1
-                        if self.gTokenSet[self.gIndex][0] == "(":
-                            self.gIndex += 1
-                            if self.Para():
-                                # self.gIndex += 1
-                                if self.gTokenSet[self.gIndex][0] == ")":
-                                    self.gIndex += 1
-                                    if self.Body():
-                                        return True
-        return False
+    # def func(self):
+    #     if self.gTokenSet[self.gIndex][0] == "AM":
+    #         self.gIndex += 1
+    #         if self.Nature():
+    #             # self.gIndex += 1
+    #             if self.Ret_DT():
+    #                 self.gIndex += 1
+    #                 if self.gTokenSet[self.gIndex][0] == "ID":
+    #                     self.gIndex += 1
+    #                     if self.gTokenSet[self.gIndex][0] == "(":
+    #                         self.gIndex += 1
+    #                         if self.Para():
+    #                             # self.gIndex += 1
+    #                             if self.gTokenSet[self.gIndex][0] == ")":
+    #                                 self.gIndex += 1
+    #                                 if self.Body():
+    #                                     return True
+    #     return False
 
     def Nature(self):
         if self.gTokenSet[self.gIndex][0] == "VO":
@@ -171,7 +171,7 @@ class SA:
         if self.gTokenSet[self.gIndex][0] == "=":
             self.gIndex += 1
             if self.OE():
-                self.gIndex += 1
+                # self.gIndex += 1
                 return True
 
         elif self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == ",":
@@ -314,7 +314,7 @@ class SA:
                                         return True
         elif self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "[" or self.gTokenSet[self.gIndex][0] == "." or self.gTokenSet[self.gIndex][0] == "inc_dec" or self.gTokenSet[self.gIndex][0] == "=" or self.gTokenSet[self.gIndex][0] == "Comp_asgn":
             if self.xy():
-                self.gIndex += 1
+                # self.gIndex += 1
                 if self.gTokenSet[self.gIndex][0] == ";":
                     return True
         return False
@@ -326,6 +326,7 @@ class SA:
                 if self.OE():
                     return True
         elif self.gTokenSet[self.gIndex][0] == "inc_dec":
+            self.gIndex += 1
             return True
         return False
 
@@ -630,7 +631,7 @@ class SA:
     def OE(self):
         if self.gTokenSet[self.gIndex][0] == "ID" or self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst" or self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "!" or self.gTokenSet[self.gIndex][0] == "inc_dec":
             if self.ae():
-                self.gIndex+=1
+                # self.gIndex+=1
                 if self.OE_():
                     return True
         return False
@@ -640,7 +641,7 @@ class SA:
         if self.gTokenSet[self.gIndex][0] == "ya":
             self.gIndex+=1
             if self.ae():
-                self.gIndex+=1
+                # self.gIndex+=1
                 if self.OE_():
                     return True
         if self.gTokenSet[self.gIndex][0] == "," or self.gTokenSet[self.gIndex][0] == ")" or self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "]":
@@ -650,7 +651,7 @@ class SA:
     def ae(self):
         if self.gTokenSet[self.gIndex][0] == "ID" or self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst" or self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "!" or self.gTokenSet[self.gIndex][0] == "inc_dec":
             if self.re():
-                self.gIndex+=1
+                # self.gIndex+=1
                 if self.ae_():
                     return True
         return False
@@ -660,7 +661,7 @@ class SA:
         if self.gTokenSet[self.gIndex][0] == "aur":
             self.gIndex+=1
             if self.re():
-                self.gIndex+=1
+                # self.gIndex+=1
                 if self.ae_():
                     return True
         if self.gTokenSet[self.gIndex][0] == "ya" or self.gTokenSet[self.gIndex][0] == "," or self.gTokenSet[self.gIndex][0] == ")" or self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "]":
@@ -670,7 +671,7 @@ class SA:
     def re(self):
         if self.gTokenSet[self.gIndex][0] == "ID" or self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst" or self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "!" or self.gTokenSet[self.gIndex][0] == "inc_dec":
             if self.E():
-                self.gIndex+=1
+                # self.gIndex+=1
                 if self.re_():
                     return True
         return False
@@ -680,7 +681,7 @@ class SA:
         if self.gTokenSet[self.gIndex][0] == "RelOp":
             self.gIndex+=1
             if self.E():
-                self.gIndex+=1
+                # self.gIndex+=1
                 if self.re_():
                     return True
         if self.gTokenSet[self.gIndex][0] == "aur" or self.gTokenSet[self.gIndex][0] == "ya" or self.gTokenSet[self.gIndex][0] == "," or self.gTokenSet[self.gIndex][0] == ")" or self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "]":
@@ -690,7 +691,7 @@ class SA:
     def E(self):
         if self.gTokenSet[self.gIndex][0] == "ID" or self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst" or self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "!" or self.gTokenSet[self.gIndex][0] == "inc_dec":
             if self.T():
-                self.gIndex+=1
+                # self.gIndex+=1
                 if self.E_():
                     return True
         return False
@@ -700,7 +701,7 @@ class SA:
         if self.gTokenSet[self.gIndex][0] == "PM":
             self.gIndex+=1
             if self.T():
-                self.gIndex+=1
+                # self.gIndex+=1
                 if self.E_():
                     return True
         if self.gTokenSet[self.gIndex][0] == "RelOp" or self.gTokenSet[self.gIndex][0] == "aur" or self.gTokenSet[self.gIndex][0] == "ya" or self.gTokenSet[self.gIndex][0] == "," or self.gTokenSet[self.gIndex][0] == ")" or self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "]":
@@ -710,7 +711,7 @@ class SA:
     def T(self):
         if self.gTokenSet[self.gIndex][0] == "ID" or self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst" or self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "!" or self.gTokenSet[self.gIndex][0] == "inc_dec":
             if self.F():
-                self.gIndex+=1
+                # self.gIndex+=1
                 if self.T_():
                     return True
         return False
@@ -720,7 +721,7 @@ class SA:
         if self.gTokenSet[self.gIndex][0] == "MDM":
             self.gIndex+=1
             if self.F():
-                self.gIndex+=1
+                # self.gIndex+=1
                 if self.T_():
                     return True
         if self.gTokenSet[self.gIndex][0] == "PM" or self.gTokenSet[self.gIndex][0] == "RelOp" or self.gTokenSet[self.gIndex][0] == "aur" or self.gTokenSet[self.gIndex][0] == "ya" or self.gTokenSet[self.gIndex][0] == "," or self.gTokenSet[self.gIndex][0] == ")" or self.gTokenSet[self.gIndex][0] == ";" or self.gTokenSet[self.gIndex][0] == "]":
@@ -734,16 +735,19 @@ class SA:
                 return True
         if self.gTokenSet[self.gIndex][0] == "IntConst"or self.gTokenSet[self.gIndex][0] == "CharConst" or self.gTokenSet[self.gIndex][0] == "BoolConst" or self.gTokenSet[self.gIndex][0] == "FloatConst" or self.gTokenSet[self.gIndex][0] == "StrConst":
             if self.const():
+                self.gIndex +=1
                 return True
         if self.gTokenSet[self.gIndex][0] == "(":
             self.gIndex+=1
             if self.OE():
                 self.gIndex+=1
                 if self.gTokenSet[self.gIndex][0] == ")":
+                    self.gIndex += 1
                     return True 
         if self.gTokenSet[self.gIndex][0] == "!": 
             self.gIndex+=1
             if self.F():
+                self.gIndex += 1
                 return True
         if self.gTokenSet[self.gIndex][0] == "inc_dec":
             self.gIndex+=1
@@ -757,7 +761,7 @@ class SA:
     def call(self):
         if self.gTokenSet[self.gIndex][0] == "(" or self.gTokenSet[self.gIndex][0] == "[" or  self.gTokenSet[self.gIndex][0] == "." or  self.gTokenSet[self.gIndex][0] == "inc_dec" :
             if self.XY_F():
-                self.gIndex+=1
+                # self.gIndex+=1
                 return True
         if self.gTokenSet[self.gIndex][0] == "MDM" or  self.gTokenSet[self.gIndex][0] == "PM" or  self.gTokenSet[self.gIndex][0] == "RelOp" or  self.gTokenSet[self.gIndex][0] == "aur" or  self.gTokenSet[self.gIndex][0] == "ya" or  self.gTokenSet[self.gIndex][0] == "," or  self.gTokenSet[self.gIndex][0] == ")" or  self.gTokenSet[self.gIndex][0] == ";" or  self.gTokenSet[self.gIndex][0] == "]":
             return True
@@ -842,7 +846,7 @@ class SA:
             if self.gTokenSet[self.gIndex][0] == "ID":
                 self.gIndex+=1
                 if self.xy():
-                    self.gIndex+=1
+                    # self.gIndex+=1
                     return True            
         if self.gTokenSet[self.gIndex][0] == ";":
             return True
@@ -892,7 +896,7 @@ class SA:
             if self.gTokenSet[self.gIndex][0] == "ID":
                 self.gIndex+=1
                 if self.XY_F():
-                    self.gIndex+=1
+                    # self.gIndex+=1
                     return True            
         if self.gTokenSet[self.gIndex][0] == "MDM" or  self.gTokenSet[self.gIndex][0] == "PM" or  self.gTokenSet[self.gIndex][0] == "RelOp" or  self.gTokenSet[self.gIndex][0] == "aur" or  self.gTokenSet[self.gIndex][0] == "ya" or  self.gTokenSet[self.gIndex][0] == "," or  self.gTokenSet[self.gIndex][0] == ")" or  self.gTokenSet[self.gIndex][0] == ";" or  self.gTokenSet[self.gIndex][0] == "]":
             return True

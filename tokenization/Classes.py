@@ -1,6 +1,7 @@
 def Classes():
     ClassesAlpha = {
         "void": ['void'],
+        'grid': ['grid'],
         "jabtak": ['jabtak'],
         "karo": ['karo'],
         "agar": ['agar'],
@@ -34,8 +35,9 @@ def Classes():
         "{":['{'],
         "}":['}'],
         "(":['('],
-        ")":[')']
-        
+        ")":[')'],
+        "[":['['],
+        ']':[']']
     }
 
     return [ClassesAlpha,classesSymba]
