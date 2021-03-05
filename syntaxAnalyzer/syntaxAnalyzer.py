@@ -15,8 +15,8 @@ class SA:
 
 
     def S(self):
-        # if self.gTokenSet[self.gIndex][0] == "$":
-        #     return True
+        if self.gTokenSet[self.gIndex][0] == "$":
+            return True
         if self.gTokenSet[self.gIndex][0] == "AM" or self.gTokenSet[self.gIndex][0] == "class" or self.gTokenSet[self.gIndex][0] == "$":
             if self.defs():
                 # self.gIndex += 1
