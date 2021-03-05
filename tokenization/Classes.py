@@ -2,6 +2,7 @@ def Classes():
     ClassesAlpha = {
         "void": ['void'],
         "jabtak": ['jabtak'],
+        "karo": ['karo'],
         "agar": ['agar'],
         'warna': ['warna'],
         'return': ['return'],

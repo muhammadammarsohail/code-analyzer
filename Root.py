@@ -6,10 +6,15 @@ from syntaxAnalyzer.syntaxAnalyzer import SA
 #                           Implemetation
 # Word tokenizer will generate the token sets.
 tokenSets = WordTokernizer(
-"""class myClass{
-    void Main(){
-
-    } 
+"""
+class A extends B{
+void Main(){
+}
+}
+infiradi class myClass{
+    ijtemai void LetsLoop(){
+        
+}
 }
 """)
 print(f"==========>>Token Set\n{tokenSets}\n<<==========")
