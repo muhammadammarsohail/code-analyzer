@@ -1,9 +1,9 @@
-class A extends B{
-void Main(){
+
+ijtemai class B{
 }
-}
-infirad class myClass{
-    ijtemai void LetsLoop(){
-        
-}
-}
+class C extends A{
+  void Main(){
+
+  }
+} 
+

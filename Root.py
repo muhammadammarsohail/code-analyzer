@@ -22,5 +22,6 @@ tokenSets.append(("$", "$", -1))
 
 # Syntaxt analzer constructor calling.
 saInst = SA()
+
 # Passing taokensets as input in Syntax Analyzer.
 saInst.SyntaxAnalyzer(tokenSets)
