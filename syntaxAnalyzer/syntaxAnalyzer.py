@@ -11,6 +11,7 @@ class SA:
         self.category = "general"
         self.parentVP = "None"
         self.objSA = SemanticAnalyzer()
+        self.typeVP = ""
 
 
     def SyntaxAnalyzer(self,tokenSets):
@@ -34,8 +35,8 @@ class SA:
                         self.gIndex += 1
                         if self.inher():
                             # self.gIndex += 1
-                            print(self.objSA.insertMainTable(self.idVP,self.accModVP,self.category,self.parentVP))
-                            if self.gTokenSet[self.gIndex][0] == "{":       
+                            if self.gTokenSet[self.gIndex][0] == "{": 
+                                print(self.objSA.insertMainTable(self.idVP,self.accModVP,self.category,self.parentVP))
                                 self.gIndex += 1
                                 if self.cBody_Elements():
                                     # self.gIndex += 1
@@ -130,8 +131,10 @@ class SA:
 
     def Dec(self):
         if self.gTokenSet[self.gIndex][0] == "DT":
+            self.typeVP = self.gTokenSet[self.gIndex][1]
             self.gIndex += 1
             if self.gTokenSet[self.gIndex][0] == "ID":
+                self.idVP = self.gTokenSet[self.gIndex][1]
                 self.gIndex += 1
                 if self.Init():
                     if self.List():
@@ -151,10 +154,12 @@ class SA:
 
     def List(self):
         if self.gTokenSet[self.gIndex][0] == ";":
+            
             return True
         elif self.gTokenSet[self.gIndex][0] == ",":
             self.gIndex += 1
             if self.gTokenSet[self.gIndex][0] == "ID":
+
                 self.gIndex += 1
                 if self.Init():
                     if self.List():
@@ -216,6 +221,7 @@ class SA:
 
     def Body(self):
         if self.gTokenSet[self.gIndex][0] == "{":
+            self.objSA.scope+=1
             self.gIndex += 1
             if self.mst():
                 # self.gIndex += 1
@@ -445,9 +451,11 @@ class SA:
 
     def ABS(self):
         if self.gTokenSet[self.gIndex][0] == "passive":
+            self.category = self.gTokenSet[self.gIndex][1]
             self.gIndex += 1
             return True
         elif self.gTokenSet[self.gIndex][0] == "class":
+            self.category = "general"
             return True
 
         return False
@@ -460,6 +468,7 @@ class SA:
                 self.gIndex += 1
                 return True
         elif self.gTokenSet[self.gIndex][0] == "{":
+            self.parentVP = "None"
             return True
         return False
 
@@ -705,6 +714,7 @@ class SA:
 
     def F(self):
         if self.gTokenSet[self.gIndex][0] == "ID":
+            print(self.objSA.lookupIdScope(self.gTokenSet[self.gIndex][1]))
             self.gIndex+=1
             if self.call():
                 return True
@@ -727,6 +737,7 @@ class SA:
         if self.gTokenSet[self.gIndex][0] == "inc_dec":
             self.gIndex+=1
             if  self.gTokenSet[self.gIndex][0] == "ID":
+                print(self.objSA.lookupIdScope(self.gTokenSet[self.gIndex][1]))
                 self.gIndex+=1
                 if self.X():
                     return True

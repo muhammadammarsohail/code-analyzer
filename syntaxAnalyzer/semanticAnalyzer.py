@@ -44,6 +44,12 @@ class SemanticAnalyzer:
         self.functionTableEntries.append({"name":name,"type":idType,"scope":scope})
         return [True,""]
 
+    def lookupIdScope(self,idVal):
+        for obj in self.functionTableEntries:
+            if obj.name == idVal and obj.scope == self.scope:
+                return [True,""]
+        return [False,f"Un-declared identifier: {idVal}"]
+
 
     def insertBodyTable(self,name,idType,accMod,typeModifier):
         for obj in self.bodyTableEntries:

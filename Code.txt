@@ -1,7 +1,7 @@
 
 ijtemai class B{
 }
-class C extends A{
+class A extends B{
   void Main(){
 
   }
