@@ -1,3 +1,5 @@
+# Responsible for token generation
+
 def LexicalErrorDetector(tokenSets):
     print("\n==============>Lexical Errors:")
     for index in range(len(tokenSets)):
